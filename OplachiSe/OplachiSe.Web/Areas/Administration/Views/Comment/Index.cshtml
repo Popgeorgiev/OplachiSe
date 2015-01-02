@@ -1,0 +1,7 @@
+﻿@using OplachiSe.Web.Areas.Administration.Models
+@{
+    const string ControllerName = "Comment";
+    ViewBag.Title = ControllerName;
+}
+<h2>@ViewBag.Title</h2>
+@(Html.FullFeaturedGrid<CommentViewModel>(ControllerName, m => m.Id))

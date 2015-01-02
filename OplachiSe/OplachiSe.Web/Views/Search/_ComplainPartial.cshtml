@@ -1,0 +1,27 @@
+﻿@model OplachiSe.Web.Models.ComplainModels.ComplainSearchViewModel
+
+<div class="row">
+    <a href="~/Complain/Details/@Model.Id">
+        <div class="col-md-5">
+            <h1>
+                @Model.Title
+            </h1>
+            <h4>Категория : @Model.CategoryName</h4>
+            <div>
+                @if (Model.PictureId != null)
+                {
+                    <img class="img-thumbnail pic-preview" src="@Url.Action("Picture", "Complain", new { id = Model.PictureId })" alt="@Model.Title" />
+                }
+                else
+                {
+                    <img class="img-thumbnail pic-preview" src="@GlobalConstants.ImageLink" alt="@Model.Title" />
+                }
+            </div>
+            <em>Добавено на : @Model.CreatedOn</em>
+            <hr />
+        </div>
+    </a>
+</div>
+
+
+

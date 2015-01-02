@@ -1,0 +1,18 @@
+﻿@model ICollection<OplachiSe.Web.Models.ComplainModels.LatestComplainViewModel>
+
+
+@foreach (var item in Model)
+{
+    <a href="~/Complain/Details/@item.Id">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">@item.Title</h3>
+            </div>
+            <div class="panel-body">
+                Създадено на: @item.CreatedOn
+            </div>
+        </div>
+    </a>
+
+}
+

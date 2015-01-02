@@ -1,0 +1,24 @@
+﻿@model ICollection<OplachiSe.Web.Models.ComplainViewModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>Оплачи се</h1>
+<h2>Мястото, където всяка неправда излиза наяве</h2>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="jumbotron">
+                <h3>Водещи</h3>
+                @Html.Action("GetPopularComplains", "Home", null)
+            </div>
+            
+        </div>
+        <div class="col-md-5">
+            <h3>Последни</h3>
+            @Html.Action("GetLatestComplains", "Home", null)
+        </div>
+    </div>
+</div>

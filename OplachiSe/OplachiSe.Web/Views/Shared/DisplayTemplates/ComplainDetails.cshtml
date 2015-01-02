@@ -1,0 +1,59 @@
+﻿@using OplachiSe.Web.Models.CommentModels
+@model OplachiSe.Web.Models.ComplainModels.ComplainDetailsViewModel
+<div>
+    <h3>Снимка</h3>
+    @if (Model.PictureId != null)
+    {
+        <img class="img-thumbnail pic-details" src="@Url.Action("Picture", "Complain", new { id = Model.PictureId })" alt="@Model.Title" />
+    }
+    else
+    {
+        <img class="img-thumbnail pic-details" src="@GlobalConstants.ImageLink" alt="@Model.Title" />
+    }
+</div>
+
+<h1>@Model.Title</h1>
+<h4>Категория : @Model.CategoryName</h4>
+
+<strong>Рейтинг : @String.Format("{0:0.00}", Model.Score)</strong>
+@if (Request.IsAuthenticated)
+{
+    <div id="votes">       
+         @Html.Partial("_DisplayVotePartial", @Model.Id)
+    </div>
+}
+<br />
+
+<br />
+<div class="row">
+    <div>
+        <h4>Съдържание : </h4>
+    </div>
+    <p>@Model.Content</p>
+</div>
+<br />
+<br />
+<br />
+<br />
+<div class="row">
+    <span class="pull-right">
+        Добавено от @Model.AuthorName
+    </span>
+    <span class="pull-left">
+        Дата: @Model.CreatedOn
+    </span>
+</div>
+@if (Request.IsAuthenticated)
+{
+    <div class="row">
+        <div id="AddComent">
+            @Html.Partial("_AddCommentPartial", new AddCommentViewModel() { ComplainId = Model.Id })
+        </div>
+    </div>
+}
+
+<div id="comments-page">
+
+    @Html.Action("ComplainComments", "Comment", new { id = Model.Id})
+</div>
+

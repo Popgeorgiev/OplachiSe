@@ -1,0 +1,7 @@
+﻿@using OplachiSe.Web.Areas.Administration.Models
+@{
+    const string ControllerName = "Category";
+    ViewBag.Title = ControllerName;
+}
+<h2>@ViewBag.Title</h2>
+@(Html.FullFeaturedGrid<CategoryViewModel>(ControllerName, m => m.Id))

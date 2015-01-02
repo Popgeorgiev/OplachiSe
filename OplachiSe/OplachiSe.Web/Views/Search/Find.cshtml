@@ -1,0 +1,22 @@
+﻿@model OplachiSe.Web.Models.ComplainModels.ComplainFindViewModel
+
+@using (Html.BeginForm("Find", "Search", FormMethod.Post))
+{
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            @Html.AntiForgeryToken()
+            @Html.TextBox("search", null, new { @class = "form-control inline" })
+        </div>
+        <div class="col-md-2">
+            @Html.DropDownList("category", Model.Categories, "Избери... ", new { @class = "form-control inline" })
+        </div>
+        <input type="submit" class="btn btn-info" value="Search" />
+    </div>
+}
+<div class="container">
+    @foreach (var complain in Model.Complains)
+    {
+        @Html.Partial("_ComplainPartial", complain)
+    }
+</div>

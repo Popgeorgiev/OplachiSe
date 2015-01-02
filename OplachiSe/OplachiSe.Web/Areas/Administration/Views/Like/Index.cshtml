@@ -1,0 +1,7 @@
+﻿@using OplachiSe.Web.Areas.Administration.Models
+@{
+    const string ControllerName = "Like";
+    ViewBag.Title = ControllerName;
+}
+<h2>@ViewBag.Title</h2>
+@(Html.FullFeaturedGrid<LikeViewModel>(ControllerName, m => m.Id))

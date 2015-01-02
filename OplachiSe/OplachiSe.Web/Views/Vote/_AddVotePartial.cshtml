@@ -1,0 +1,16 @@
+﻿@model OplachiSe.Web.Models.VoteModels.NewVoteViewModel
+@using (Ajax.BeginForm("SendVote", "Vote",
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "votes"
+        }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.ComplainId)
+    @Html.EditorFor(m => m.Value)
+
+    <input type="submit" class="btn btn-primary" value="Гласувай" />
+}

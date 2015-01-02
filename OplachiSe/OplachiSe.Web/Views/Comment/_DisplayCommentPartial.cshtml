@@ -1,0 +1,61 @@
+﻿@model ICollection<OplachiSe.Web.Models.CommentModels.ShowCommentViewModel>
+<div class="row">
+    <br />
+    <br />
+    <div class="col-md-5 comment">
+        @foreach (var item in Model)
+        {
+            var voteId = "voteDisplay" + item.Id;
+            <strong>Автор : @item.AuthorName</strong>
+            <div>
+                <br />
+                Харесвания
+
+                @if (@item.LikesResult == null)
+                {
+                    <span id=@voteId>0</span>
+                }
+                else
+                {
+                    <span id=@voteId>@item.LikesResult</span>
+                }
+
+                
+                <div>
+                    @if (Request.IsAuthenticated)
+                    {
+                        @Ajax.ActionLink("+", "Like", new { value = 1, commentId = item.Id },
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = @voteId,
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace
+                    }, new { @class = "btn btn-success" })
+                        @Html.AntiForgeryToken()
+                        @Ajax.ActionLink("+", "Like", new { value = -1, commentId = item.Id },
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = voteId,
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace
+                    }, new { @class = "btn btn-danger" })
+                    }
+                        
+                </div>
+            </div>
+            <br />
+            <br />
+            @item.Content
+            <br />
+
+            <div class="comment-info">
+                <span><em>Добавено на : @item.CreatedOn</em></span>
+            </div>
+
+            <hr />
+        }
+        
+    </div>
+</div>
+
+

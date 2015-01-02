@@ -1,0 +1,20 @@
+﻿@model OplachiSe.Web.Models.CommentModels.AddCommentViewModel
+
+@using (Ajax.BeginForm("AddComment", "Comment",
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "comments-page"
+        }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.ComplainId)
+    @Html.EditorFor(m => m.Content)
+    <input type="submit" class="btn btn-primary" value="Добави коментар" />
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

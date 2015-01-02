@@ -1,0 +1,7 @@
+﻿@using OplachiSe.Web.Areas.Administration.Models
+@{
+    const string ControllerName = "Complain";
+    ViewBag.Title = ControllerName;
+}
+<h2>@ViewBag.Title</h2>
+@(Html.FullFeaturedGrid<ComplainViewModel>(ControllerName, m => m.Id))

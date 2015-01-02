@@ -1,0 +1,34 @@
+﻿@model OplachiSe.Web.Models.ComplainModels.ComplainPagerViewModel
+
+@using (Html.BeginForm("Find", "Search", FormMethod.Post))
+{
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            @Html.AntiForgeryToken()
+            @Html.TextBox("search", null, new { @class = "form-control inline" })
+        </div>
+        <div class="col-md-2">
+            @Html.DropDownList("category", Model.Categories, "Избери... ", new { @class = "form-control inline" })
+        </div>
+        <input type="submit" class="btn btn-info" value="Search" />
+    </div>
+}
+<div class="container">
+    @foreach (var complain in Model.Complains)
+    {
+        @Html.Partial("_ComplainPartial", complain)
+    }
+</div>   
+
+<ul class="pagination">
+
+    <li>@Html.ActionLink("«", "Display", new { page = Model.CurrentPage - 1, search = @Model.SearchWord })</li>
+    @for (int i = 1; i <= Model.MaxPages; i++)
+    {
+        <li class="@(@Model.CurrentPage == i ? "active" : "")">
+            @Html.ActionLink(i.ToString(), "Display", new { page = i })
+        </li>
+    }
+    <li>@Html.ActionLink("»", "Display", new { page = Model.CurrentPage + 1 })</li>
+</ul>

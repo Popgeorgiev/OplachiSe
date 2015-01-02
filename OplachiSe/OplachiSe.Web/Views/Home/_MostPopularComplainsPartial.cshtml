@@ -1,0 +1,31 @@
+﻿@model ICollection<OplachiSe.Web.Models.ComplainViewModel>
+
+
+@foreach (var item in Model)
+{
+    <a href="~/Complain/Details/@item.Id">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">@item.Title</h3>
+            </div>
+            <div class="panel-body">
+                <div>
+                    @if (item.PictureId != null)
+                    {
+                        <img class="img-thumbnail pic-preview" src="@Url.Action("Picture", "Complain", new { id = item.PictureId })" alt="@item.Title" />
+                    }
+                    else
+                    {
+                        <img class="img-thumbnail pic-preview" src="@GlobalConstants.ImageLink" alt="@item.Title" />
+                    }
+
+                </div>
+                <div style="word-wrap:break-word">
+                    @item.Content
+                </div>
+            </div>
+        </div>
+    </a>
+
+}
+
